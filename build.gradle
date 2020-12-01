@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
 }
 
 group 'io.github.hotlava03'
