@@ -20,7 +20,19 @@ class OctyneClientImpl implements OctyneClient {
     private final Logger logger;
     private List<Server> servers;
 
+    OctyneClientImpl(String username, String password, String url, String protocol) {
+        this(null, url, protocol);
+    }
+
+    OctyneClientImpl(String username, String password, String url, String protocol, ConsoleListener listener) {
+        this(null, url, protocol, listener);
+    }
+
     OctyneClientImpl(String token, String url, String protocol) {
+        this(token, url, protocol, (ConsoleListener) null);
+    }
+
+    OctyneClientImpl(String token, String url, String protocol, ConsoleListener listener) {
         this.token = token;
         this.url = url;
         this.protocol = protocol;
@@ -50,6 +62,11 @@ class OctyneClientImpl implements OctyneClient {
                 servers.addAll(serverList.getServers());
             }
         });
+
+        // If ConsoleListener isn't null, it means we automatically open the console for all servers.
+        if (listener != null) {
+            servers.forEach(s -> openConsole(s.getName(), listener));
+        }
     }
 
     @Override
