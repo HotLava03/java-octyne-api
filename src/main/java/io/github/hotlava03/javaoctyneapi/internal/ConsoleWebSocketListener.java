@@ -1,12 +1,10 @@
 package io.github.hotlava03.javaoctyneapi.internal;
 
 import io.github.hotlava03.javaoctyneapi.console.ConsoleListener;
-import io.github.hotlava03.javaoctyneapi.entities.Server;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
-import org.jetbrains.annotations.NotNull;
 
 public class ConsoleWebSocketListener extends WebSocketListener {
     private final String token, url, server;
@@ -31,7 +29,7 @@ public class ConsoleWebSocketListener extends WebSocketListener {
     }
 
     @Override
-    public void onMessage(@NotNull WebSocket webSocket, @NotNull String text) {
+    public void onMessage(WebSocket webSocket, String text) {
         listener.onMessage(text, server);
     }
 }

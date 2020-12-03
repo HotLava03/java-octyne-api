@@ -7,13 +7,16 @@ plugins {
 group 'io.github.hotlava03'
 version '0.0.1-alpha.1'
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 repositories {
     jcenter()
     mavenCentral()
 }
 
 dependencies {
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.12'
     implementation 'com.google.code.gson:gson:2.8.1'
 }
 

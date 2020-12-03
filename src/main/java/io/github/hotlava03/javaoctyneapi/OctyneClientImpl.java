@@ -6,7 +6,6 @@ import io.github.hotlava03.javaoctyneapi.entities.Server;
 import io.github.hotlava03.javaoctyneapi.internal.ConsoleWebSocketListener;
 import io.github.hotlava03.javaoctyneapi.internal.pojo.ServerList;
 import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,12 +46,12 @@ class OctyneClientImpl implements OctyneClient {
 
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+            public void onFailure(Call call, IOException e) {
                 logger.throwing(OctyneClient.class.getName(), "<init>", e);
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) {
+            public void onResponse(Call call, Response response) {
                 Gson gson = new Gson();
                 ResponseBody body = response.body();
                 if (body == null)
@@ -65,7 +64,7 @@ class OctyneClientImpl implements OctyneClient {
 
         // If ConsoleListener isn't null, it means we automatically open the console for all servers.
         if (listener != null) {
-            servers.forEach(s -> openConsole(s.getName(), listener));
+            for (Server server : servers) openConsole(server.getName(), listener);
         }
     }
 
@@ -82,12 +81,12 @@ class OctyneClientImpl implements OctyneClient {
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+            public void onFailure(Call call, IOException e) {
                 logger.throwing(OctyneClient.class.getName(), "logout", e);
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) {
+            public void onResponse(Call call, Response response) {
                 token = null;
             }
         });
