@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'io.github.hotlava03'
-version '0.0.1-alpha.2'
+version '0.0.1-alpha.3'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
