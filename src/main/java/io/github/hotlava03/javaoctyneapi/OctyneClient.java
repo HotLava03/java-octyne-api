@@ -2,6 +2,7 @@ package io.github.hotlava03.javaoctyneapi;
 
 import io.github.hotlava03.javaoctyneapi.console.ConsoleListener;
 import io.github.hotlava03.javaoctyneapi.entities.Server;
+import io.github.hotlava03.javaoctyneapi.entities.exceptions.OctyneLoginException;
 
 import java.util.List;
 
@@ -27,6 +28,15 @@ public interface OctyneClient {
      * token.
      */
     void logout();
+
+    /**
+     * Login into Octyne. This is called automatically
+     * when creating a new {@link OctyneClient} instance.
+     *
+     * @param username The username.
+     * @param password The password.
+     */
+    void login(String username, String password) throws OctyneLoginException;
 
     /**
      * Listen to console messages in a specific

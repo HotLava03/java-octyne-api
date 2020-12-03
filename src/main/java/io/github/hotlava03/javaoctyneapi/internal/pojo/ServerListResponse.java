@@ -4,7 +4,7 @@ import io.github.hotlava03.javaoctyneapi.entities.Server;
 
 import java.util.List;
 
-public class ServerList {
+public class ServerListResponse {
     private List<Server> servers;
 
     public List<Server> getServers() {

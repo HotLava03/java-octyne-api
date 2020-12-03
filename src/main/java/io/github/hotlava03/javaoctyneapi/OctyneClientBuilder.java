@@ -1,6 +1,7 @@
 package io.github.hotlava03.javaoctyneapi;
 
 import io.github.hotlava03.javaoctyneapi.console.ConsoleListener;
+import io.github.hotlava03.javaoctyneapi.entities.exceptions.OctyneLoginException;
 
 public class OctyneClientBuilder {
     private String token, username, password;
@@ -42,7 +43,13 @@ public class OctyneClientBuilder {
         return this;
     }
 
-    public OctyneClient build() {
+    /**
+     * Build a new OctyneClient instance.
+     *
+     * @return A new OctyneClient instance.
+     * @throws OctyneLoginException If the login information is incorrect.
+     */
+    public OctyneClient build() throws OctyneLoginException {
         if (this.token != null) return new OctyneClientImpl(token, url, https ? "https" : "http", listener);
         else {
             if (this.username == null || this.password == null) {
